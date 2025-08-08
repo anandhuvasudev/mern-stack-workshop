@@ -4,48 +4,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Form</title>
+    <title>Event Registration Form</title>
 </head>
 
 <body>
-    <h3>Registration</h3>
+    <h3 id="formTitle">Event Registration</h3>
 
-    <form action="">
+
+    <form action="" id="registrationForm">
         <table>
-            <tr>
-                <td><label for="username">Username:</label></td>
-                <td><input type="text" id="username" name="username"></td>
-            </tr>
 
             <tr>
-                <td><label for="gender">Gender:</label></td>
-                <td><input type="radio" name="gender" value="male">male</td>
+                <td><label for="fullName">Full Name:</label></td>
+                <td><input type="text" id="fullName" name="fullName" required></td>
             </tr>
-            <tr>
-                <td></td>
-                <td><input type="radio" name="gender" value="female">female</td>
-            </tr>
+
+
             <tr>
                 <td><label for="email">Email:</label></td>
-                <td><input type="email" id="email" name="email"></td>
+                <td><input type="email" id="email" name="email" required></td>
             </tr>
 
-            <tr>
-                <td><label for="password">Password:</label></td>
-                <td><input type="password" id="password" name="password"></td>
-            </tr>
 
             <tr>
-                <td><label for="confirm_password">Confirm Password:</label></td>
-                <td><input type="password" id="confirm_password" name="confirm_password"></td>
+                <td><label for="phone">Phone Number:</label></td>
+                <td><input type="tel" id="phone" name="phone" pattern="[6-9][0-9]{9}"
+                        title="Please enter a valid 10-digit Indian mobile number" placeholder="e.g., 9876543210"
+                        required></td>
             </tr>
+
+
+            <tr>
+                <td><label for="attendees">Number of Attendees:</label></td>
+                <td><input type="number" id="attendees" name="attendees" min="1" max="10" required></td>
+            </tr>
+
+
+            <tr>
+                <td><label for="eventDate">Event Date:</label></td>
+                <td><input type="date" id="eventDate" name="eventDate" min="2025-08-09" required></td>
+            </tr>
+
+
+            <tr>
+                <td><label for="eventTime">Event Time:</label></td>
+                <td><input type="time" id="eventTime" name="eventTime" required></td>
+            </tr>
+
+
+            <tr>
+                <td><label for="eventType">Event Type:</label></td>
+                <td>
+                    <select id="eventType" name="eventType" required>
+                        <option value="" disabled selected>Select an event type</option>
+                        <option value="conference">Conference</option>
+                        <option value="workshop">Workshop</option>
+                        <option value="webinar">Webinar</option>
+                    </select>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td><label>Dietary Restrictions:</label></td>
+                <td>
+                    <input type="checkbox" id="vegetarian" name="dietary" value="vegetarian">
+                    <label for="vegetarian">Vegetarian</label>
+                    <input type="checkbox" id="glutenFree" name="dietary" value="gluten-free">
+                    <label for="glutenFree">Gluten-Free</label>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td><label>T-shirt Size:</label></td>
+                <td>
+                    <input type="radio" id="sizeS" name="tshirtSize" value="S"> <label for="sizeS">S</label>
+                    <input type="radio" id="sizeM" name="tshirtSize" value="M"> <label for="sizeM">M</label>
+                    <input type="radio" id="sizeL" name="tshirtSize" value="L"> <label for="sizeL">L</label>
+                    <input type="radio" id="sizeXL" name="tshirtSize" value="XL"> <label for="sizeXL">XL</label>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td><label for="comments">Comments/Questions:</label></td>
+                <td><textarea id="comments" name="comments" rows="4" maxlength="250"></textarea></td>
+            </tr>
+
 
             <tr>
                 <td></td>
-                <td><input type="submit" value="Submit"></td>
+                <td><button type="submit">Register</button></td>
             </tr>
         </table>
     </form>
+
+
+    <div id="successMessage" style="display:none;">
+        <h3>Thank You!</h3>
+        <p>Your registration has been submitted successfully.</p>
+    </div>
+
+    <script>
+
+        const registrationForm = document.getElementById('registrationForm');
+        const successMessage = document.getElementById('successMessage');
+        const formTitle = document.getElementById('formTitle');
+
+
+        registrationForm.addEventListener('submit', function (event) {
+
+            event.preventDefault();
+
+
+            formTitle.style.display = 'none';
+            registrationForm.style.display = 'none';
+
+
+            successMessage.style.display = 'block';
+        });
+    </script>
 
 </body>
 
